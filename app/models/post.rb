@@ -9,7 +9,8 @@ class Post < ApplicationRecord
     elsif search == "backward_match"
       @post = Post.where("title LIKE?","%#{word}")
     elsif search == "partial_match"
-      @post = Post.where("title LIKE?","%#{word}%")
+      @post = ActiveRecord::Base.connection.execute("SELECT * FROM posts WHERE title LIKE '#{word}'")
+      
     else
       @post = Post.all
     end
