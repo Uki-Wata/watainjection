@@ -1,0 +1,19 @@
+<h1>Welcole to WataInjection</h1>
+<% if @login_user.nil? %>
+    <p>Please Create User Or Login</p>
+    <%= link_to "create user","users/new"%> <br>     
+    <%= link_to "login","sessions/new"%>
+    
+<% else %>
+    <%= render partial: 'searches/search' %>
+    <%= link_to "New Note", "posts/new"%><br>
+    <%= link_to "logout" , "sessions/delete" %>
+    <div id="posts">
+        ------------------
+        <% @public_posts.each do |post| %>
+            
+            <%= render post %>
+            ------------------
+        <% end %>
+    </div>    
+    <% end %> 
