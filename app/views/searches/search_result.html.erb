@@ -15,8 +15,13 @@
     <tbody>
       <% @posts.each do |post| %>
         <tr>
-          <td><%= post.title %></td>
-          <td><%= post.context %></td>
+           <% if params[:search] == "partial_match" %>
+            <td><%= post[2] %></td>
+            <td><%#= post.[3] %></td>
+          <% else %>
+            <td><%= post.title %></td>
+            <td><%= post.context %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
